@@ -116,7 +116,7 @@ async def start_command(client: Client, message: Message):
             ),
             reply_markup = reply_markup,
             #disable_web_page_preview = True,
-            quote = True
+            quote = False
         )
         return
 
