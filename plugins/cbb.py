@@ -50,3 +50,24 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         )
     elif data == "close":
         await query.message.delete()
+   
+@Bot.on_callback_query()
+async def cb_handler(client: Bot, query: CallbackQuery):
+    data = query.data
+    if data == "abt":
+        await query.message.edit_text(
+            text = f"About Message",
+            disable_web_page_preview = True,
+            reply_markup = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    ],
+                    [
+                        InlineKeyboardButton("Back", callback_data = "about")
+                    ]
+                ]
+            )
+        )
+    elif data == "close":
+        await query.message.delete()
