@@ -16,9 +16,6 @@ async def cb_handler(client: Bot, query: CallbackQuery):
                 [
                     [
                         InlineKeyboardButton("🔒 Close", callback_data = "close")
-                    ],
-                    [
-                        InlineKeyboardButton("help", callback_data = "help")
                     ]
                 ]
             )
@@ -30,42 +27,3 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         except:
             pass
         
-@Bot.on_callback_query()
-async def cb_handler(client: Bot, query: CallbackQuery):
-    data = query.data
-    if data == "help":
-        await query.message.edit_text(
-            text = f"Help Message",
-            disable_web_page_preview = True,
-            reply_markup = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("🔒 Close", callback_data = "close")
-                    ],
-                    [
-                        InlineKeyboardButton("Back", callback_data = "about")
-                    ]
-                ]
-            )
-        )
-    elif data == "close":
-        await query.message.delete()
-   
-@Bot.on_callback_query()
-async def cb_handler(client: Bot, query: CallbackQuery):
-    data = query.data
-    if data == "abt":
-        await query.message.edit_text(
-            text = f"About Message",
-            disable_web_page_preview = True,
-            reply_markup = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("🔒 Close", callback_data = "close"),
-                        InlineKeyboardButton("Help", callback_data = "help")
-                    ]
-                ]
-            )
-        )
-    elif data == "close":
-        await query.message.delete()
