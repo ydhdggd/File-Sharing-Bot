@@ -1,11 +1,11 @@
 #(©)Codexbotz
 
 from pyrogram import __version__
-from bot import Bot
+from bot import Bot as Lallus
 from config import OWNER_ID
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 
-@Bot.on_callback_query()
+@Lallus.on_callback_query()
 async def cb_handler(client: Bot, query: CallbackQuery):
     data = query.data
     if data == "about":
@@ -18,7 +18,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
                         InlineKeyboardButton("🔒 Close", callback_data = "close")
                     ],
                     [
-                        InlinekeyboardButton("Bᴀᴄᴋ", callback_data="start")
+                        InlinekeyboardButton("help", callback_data="help")
                     ]
                 ]
             )
@@ -29,3 +29,24 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.reply_to_message.delete()
         except:
             pass
+        
+@Lallus.on_callback_query()
+async def cb_handler(client: Bot, query: CallbackQuery):
+    data = query.data
+    if data == "help":
+        await query.message.edit_text(
+            text = f"Help Message",
+            disable_web_page_preview = True,
+            reply_markup = InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    ],
+                    [
+                        InlinekeyboardButton("Back", callback_data="about")
+                    ]
+                ]
+            )
+        )
+    elif data == "close":
+        await query.message.delete()
